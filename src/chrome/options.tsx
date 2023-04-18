@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 import Container from "../components/Container";
-import IcInstagram from "../components/IcInstagram";
-import IcLinkedIn from "../components/IcLinkedIn";
+// import IcInstagram from "../components/IcInstagram";
+// import IcLinkedIn from "../components/IcLinkedIn";
 import IcSettings from "../components/ICSettings";
-import ICTwitter from "../components/IcTwitter";
+// import ICTwitter from "../components/IcTwitter";
 import Logo from "../components/Logo";
 import Section, { Props as SectionProps } from "../components/Section";
 import Tab, { TabItem } from "../components/Tab";
@@ -19,11 +19,6 @@ import { Domains } from "../utils/constants";
 import "./common.css";
 
 const SECTIONS: (SectionProps & { comp: JSX.Element })[] = [
-  // {
-  //   title: "OpenAI Model",
-  //   desc: "Model to use for OpenAI API. text-davinci-003 produces higher quality writing.",
-  //   comp: <ModelOptions />,
-  // },
   {
     title: "Comment style",
     desc: "Whether generated comments will be professional, informal, etc.",
@@ -58,21 +53,21 @@ const TABS: TabItem[] = [
     ),
     icon: <IcSettings />,
   },
-  {
-    title: "Instagram Prompts",
-    comp: <Prompts type={Domains.Instagram} />,
-    icon: <IcInstagram />,
-  },
-  {
-    title: "LinkedIn Prompts",
-    comp: <Prompts type={Domains.LinkedIn} />,
-    icon: <IcLinkedIn />,
-  },
-  {
-    title: "Twitter Prompts",
-    comp: <Prompts type={Domains.Twitter} />,
-    icon: <ICTwitter />,
-  },
+  // {
+  //   title: "Instagram Prompts",
+  //   comp: <Prompts type={Domains.Instagram} />,
+  //   icon: <IcInstagram />,
+  // },
+  // {
+  //   title: "LinkedIn Prompts",
+  //   comp: <Prompts type={Domains.LinkedIn} />,
+  //   icon: <IcLinkedIn />,
+  // },
+  // {
+  //   title: "Twitter Prompts",
+  //   comp: <Prompts type={Domains.Twitter} />,
+  //   icon: <ICTwitter />,
+  // },
 ];
 
 export const Main = styled.div`

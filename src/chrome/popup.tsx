@@ -20,10 +20,10 @@ const Popup = () => {
 
   return (
     <Styled.Wrapper>
-      <Logo className="logo" />
+      {/*<Logo className="logo" />*/}
 
       {/* OPENAI API Key */}
-      <label htmlFor="open-api-key">Enter your OpenAI API key:</label>
+      <label htmlFor="open-api-key">Enter your API key:</label>
       <input
         id="open-api-key"
         placeholder="xxxxxxxx"
@@ -36,25 +36,25 @@ const Popup = () => {
       />
 
       {/* Help */}
-      <p>
-        Have some questions? More information{" "}
-        <a target="_blank" href={WELCOME_PAGE}>
-          here.
-        </a>
-      </p>
+      {/*<p>*/}
+      {/*  Have some questions? More information{" "}*/}
+      {/*  <a target="_blank" href={WELCOME_PAGE}>*/}
+      {/*    here.*/}
+      {/*  </a>*/}
+      {/*</p>*/}
 
       {/* Settings */}
-      <Styled.SettingsBtn onClick={handleOptions}>
-        <span>Options</span>
-        <ICSettings width={14} height={14} />
-      </Styled.SettingsBtn>
+      {/*<Styled.SettingsBtn onClick={handleOptions}>*/}
+      {/*  <span>Options</span>*/}
+      {/*  <ICSettings width={14} height={14} />*/}
+      {/*</Styled.SettingsBtn>*/}
 
-      <p>
-        <a href="https://social-comments-gpt.com/" target="_blank">
-          social-comments-gpt.com
-        </a>{" "}
-        &copy; 2022
-      </p>
+      {/*<p>*/}
+      {/*  <a href="https://social-comments-gpt.com/" target="_blank">*/}
+      {/*    social-comments-gpt.com*/}
+      {/*  </a>{" "}*/}
+      {/*  &copy; 2022*/}
+      {/*</p>*/}
     </Styled.Wrapper>
   );
 };

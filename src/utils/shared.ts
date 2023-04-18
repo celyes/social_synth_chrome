@@ -25,7 +25,7 @@ export const getComment = async (
     },
     body: JSON.stringify(body),
   };
-
+  // TODO: change the endpoint here...
   const resp = await fetch("https://api.openai.com/v1/completions", options);
   const chatGPTResp = await resp.json();
 
