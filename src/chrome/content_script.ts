@@ -6,6 +6,10 @@ import {
   injector as linkedInInjector,
   handler as linkedInHandler,
 } from "../lib/linkedin";
+// import {
+//   injector as facebookInjector,
+//   handler as facebookHandler,
+// } from "../lib/facebook";
 import {
   injector as instagramInjector,
   handler as instagramHandler,
@@ -21,6 +25,7 @@ import {
 
 const service: Record<Domains, [() => void, () => Promise<void>]> = {
   [Domains.LinkedIn]: [linkedInInjector, linkedInHandler],
+  // [Domains.Facebook]: [facebookInjector, facebookHandler],
   [Domains.Instagram]: [instagramInjector, instagramHandler],
   [Domains.Twitter]: [twitterInjector, twitterHandler],
 };

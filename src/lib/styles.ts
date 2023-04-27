@@ -1,5 +1,5 @@
 import { ANNOUNCEMENT_WRAPPER } from "../utils/announcements";
-import { CHATGPT_BTN_ID, TOAST_CLASSNAME } from "../utils/constants";
+import { CHATGPT_POST_BTN_ID, CHATGPT_COMMENT_BTN_ID, TOAST_CLASSNAME } from "../utils/constants";
 
 export default () => {
   const styles = `<style>
@@ -66,7 +66,7 @@ export default () => {
       align-items: center;
     }
 
-    #${CHATGPT_BTN_ID}.twitter{
+    #${CHATGPT_POST_BTN_ID}.twitter{
       width: 34px;
       height: 34px;
       display: flex;
@@ -75,21 +75,21 @@ export default () => {
       margin-right: 5px;
     }
 
-    #${CHATGPT_BTN_ID}.twitter svg {
+    #${CHATGPT_POST_BTN_ID}.twitter svg {
       width: 18px;
       height: 18px;
     }
 
-    #${CHATGPT_BTN_ID}{
+    #${CHATGPT_POST_BTN_ID}{
       cursor: pointer;
     }
 
-    #${CHATGPT_BTN_ID}:disabled, #${CHATGPT_BTN_ID}[disabled="true"] {
+    #${CHATGPT_POST_BTN_ID}:disabled, #${CHATGPT_POST_BTN_ID}[disabled="true"] {
       opacity: 0.3 !important;
       cursor: not-allowed;
     }
 
-    #${CHATGPT_BTN_ID}[loading="true"] {
+    #${CHATGPT_POST_BTN_ID}[loading="true"] {
       animation: rotation 2s infinite linear;
     }
 

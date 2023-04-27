@@ -9,8 +9,8 @@ import * as Styled from "./popup.styled";
 import "./common.css";
 
 const Popup = () => {
-  const [openAIKey, setOpenAIKey, { loading }] = useChromeStorage<string>(
-    "social-comments-openapi-key",
+  const [socialSynthAPIKey, setSocialSynthAPIKey, { loading }] = useChromeStorage<string>(
+    "social-synth-api-key",
     ""
   );
 
@@ -20,18 +20,18 @@ const Popup = () => {
 
   return (
     <Styled.Wrapper>
-      {/*<Logo className="logo" />*/}
+      <Logo className="logo" />
 
       {/* OPENAI API Key */}
       <label htmlFor="open-api-key">Enter your API key:</label>
       <input
-        id="open-api-key"
+        id="social-synth-api-key"
         placeholder="xxxxxxxx"
         type="text"
-        value={openAIKey}
+        value={socialSynthAPIKey}
         disabled={loading}
         onChange={(e) => {
-          setOpenAIKey(e.target.value);
+          setSocialSynthAPIKey(e.target.value);
         }}
       />
 
@@ -43,11 +43,11 @@ const Popup = () => {
       {/*  </a>*/}
       {/*</p>*/}
 
-      {/* Settings */}
-      {/*<Styled.SettingsBtn onClick={handleOptions}>*/}
-      {/*  <span>Options</span>*/}
-      {/*  <ICSettings width={14} height={14} />*/}
-      {/*</Styled.SettingsBtn>*/}
+       {/*Settings*/}
+      <Styled.SettingsBtn onClick={handleOptions}>
+        <span>Options</span>
+        <ICSettings width={14} height={14} />
+      </Styled.SettingsBtn>
 
       {/*<p>*/}
       {/*  <a href="https://social-comments-gpt.com/" target="_blank">*/}
