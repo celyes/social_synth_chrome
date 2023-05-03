@@ -1,6 +1,6 @@
 import ChatGPTIcon from "../components/ChatGPTIcon";
 
-import { CHATGPT_BTN_ID, Domains, ERROR_MESSAGE } from "../utils/constants";
+import { CHATGPT_COMMENT_BTN_ID, Domains, ERROR_MESSAGE } from "../utils/constants";
 import {
   getComment,
   delay,
@@ -57,11 +57,11 @@ export const handler = async () => {
   const handleClick = async (e: MouseEvent) => {
     {
       const target = e.target as Element;
-      const btn = target?.closest(`#${CHATGPT_BTN_ID}`);
+      const btn = target?.closest(`#${CHATGPT_COMMENT_BTN_ID}`);
       if (!btn) return;
 
       const config = await getConfig();
-      if (!config?.["social-comments-openapi-key"])
+      if (!config?.["social-synth-api-key"])
         return showAPIKeyError(Domains.Twitter);
 
       notyf?.dismissAll();
@@ -99,7 +99,7 @@ export const handler = async () => {
         body = await getReelContent();
       }
 
-      const comment = await getComment(config, Domains.Instagram, body);
+      const comment = await getComment(config, Domains.Instagram, body, null);
       if (comment.length) {
         imitateKeyInput(commentInputEl, comment);
       } else {
@@ -173,7 +173,7 @@ const createChatGPTBtn = (
   const chatGPTBtn = document.createElement("div");
   chatGPTBtn.setAttribute("class", className);
   chatGPTBtn.setAttribute("post-type", postType);
-  chatGPTBtn.innerHTML = ChatGPTIcon(22, color, CHATGPT_BTN_ID);
+  chatGPTBtn.innerHTML = ChatGPTIcon(22, color, CHATGPT_COMMENT_BTN_ID);
 
   return chatGPTBtn;
 };

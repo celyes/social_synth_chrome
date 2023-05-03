@@ -1,4 +1,5 @@
-export const CHATGPT_BTN_ID = "chatgpt-btn";
+export const CHATGPT_COMMENT_BTN_ID = "chatgpt-comment-btn";
+export const CHATGPT_POST_BTN_ID = "chatgpt-post-btn";
 
 export const TOAST_CLASSNAME = "social-comments-toast";
 
@@ -7,12 +8,14 @@ export const ERROR_MESSAGE =
 
 export enum Domains {
   LinkedIn = "linkedin.com",
+  // Facebook = "facebook.com",
   Instagram = "instagram.com",
   Twitter = "twitter.com",
 }
 
 export const ALLOWED_DOMAINS: Domains[] = [
   Domains.LinkedIn,
+  // Domains.Facebook,
   Domains.Instagram,
   Domains.Twitter,
 ];

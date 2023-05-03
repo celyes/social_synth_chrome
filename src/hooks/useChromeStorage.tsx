@@ -1,6 +1,10 @@
 import * as React from "react";
 
 import { StorageKeys } from "../utils/config";
+import getConfig from "../utils/config";
+import {fetchWritingStyles} from "../utils/shared";
+
+// @ts-ignore
 
 export default <T,>(key: StorageKeys, defaultValue: T) => {
   const [loading, setLoading] = React.useState(true);
@@ -22,7 +26,7 @@ export default <T,>(key: StorageKeys, defaultValue: T) => {
         console.warn(`useChromeStorage get error: ${key}`);
         setState(defaultValue);
       })
-      .finally(() => {
+      .finally(async () => {
         isInitialized.current = true;
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,6 +38,8 @@ export default <T,>(key: StorageKeys, defaultValue: T) => {
       console.warn(`useChromeStorage set error: ${key}`);
     });
   }, [key, state]);
+
+
 
   return [state, setState, { loading }] as const;
 };

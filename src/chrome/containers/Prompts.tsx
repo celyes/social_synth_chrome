@@ -13,6 +13,7 @@ interface Props {
 
 const ALL_PROMPTS: Record<Domains, [string, StorageKeys]> = {
   [Domains.LinkedIn]: ["LinkedIn", "opt-linkedin-prompts"],
+  // [Domains.Facebook]: ["Facebook", "opt-facebook-prompts"],
   [Domains.Instagram]: ["Instagram", "opt-insta-prompts"],
   [Domains.Twitter]: ["Twitter", "opt-twitter-prompts"],
 };

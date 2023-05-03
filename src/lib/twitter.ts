@@ -1,6 +1,6 @@
 import ChatGPTIcon from "../components/ChatGPTIcon";
 
-import { CHATGPT_BTN_ID, Domains, ERROR_MESSAGE } from "../utils/constants";
+import { CHATGPT_COMMENT_BTN_ID, Domains, ERROR_MESSAGE } from "../utils/constants";
 import {
   getComment,
   delay,
@@ -10,7 +10,7 @@ import {
 import getConfig from "../utils/config";
 import { notyf } from "../chrome/content_script";
 
-export const injector = () => {
+const quoteTweetInjector = () => {
   document
     .querySelectorAll(`[aria-label="Add photos or video"]`)
     .forEach((el) => {
@@ -25,7 +25,7 @@ export const injector = () => {
 
       el?.insertAdjacentHTML(
         "beforebegin",
-        `<div id="${CHATGPT_BTN_ID}" role="button" class="twitter">${ChatGPTIcon(
+        `<div id="${CHATGPT_COMMENT_BTN_ID}" role="button" class="twitter">${ChatGPTIcon(
           20,
           iconColor
         )}</div>`
@@ -33,14 +33,14 @@ export const injector = () => {
     });
 };
 
-export const handler = async () => {
+const quoteTweetHandler = async () => {
   document.body.addEventListener("click", async (e) => {
     const target = e.target as Element;
-    const btn = target?.closest(`#${CHATGPT_BTN_ID}`);
+    const btn = target?.closest(`#${CHATGPT_COMMENT_BTN_ID}`);
     if (!btn) return;
 
     const config = await getConfig();
-    if (!config?.["social-comments-openapi-key"])
+    if (!config?.["social-synth-api-key"])
       return showAPIKeyError(Domains.Twitter);
 
     notyf?.dismissAll();
@@ -50,7 +50,7 @@ export const handler = async () => {
       `[class="DraftEditor-root"]`
     );
     if (!commentInputWrapper) return;
-    setTweetText(commentInputWrapper, "ChatGPT is thinking...");
+    setTweetText(commentInputWrapper, "Yobi is thinking...");
 
     btn.setAttribute("disabled", "true");
     btn.setAttribute("loading", "true");
@@ -58,7 +58,7 @@ export const handler = async () => {
     const content =
       closestSibling(btn, `[data-testid="tweetText"]`)?.textContent || "";
 
-    const comment = await getComment(config, Domains.Twitter, content);
+    const comment = await getComment(config, Domains.Twitter, content, null);
     if (comment.length) {
       setTweetText(commentInputWrapper, comment);
     } else {
@@ -70,6 +70,14 @@ export const handler = async () => {
     btn.setAttribute("loading", "false");
   });
 };
+
+export const injector = () => {
+    quoteTweetInjector()
+}
+
+export const handler = async () => {
+  await quoteTweetHandler()
+}
 
 const setTweetText = async (commentInputWrapper: Element, text: string) => {
   const editable = commentInputWrapper?.querySelector(`[contenteditable]`);

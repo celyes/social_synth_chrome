@@ -1,4 +1,5 @@
 import { UNINSTALL_PAGE, WELCOME_PAGE } from "../utils/constants";
+import {fetchWritingStyles} from "../utils/shared";
 
 // chrome.runtime.onInstalled.addListener((details) => {
 //   if (details.reason == "install") {

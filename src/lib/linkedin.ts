@@ -1,7 +1,7 @@
 import ChatGPTIcon from "../components/ChatGPTIcon";
 
-import {CHATGPT_BTN_ID, Domains, ERROR_MESSAGE} from "../utils/constants";
-import {getComment, delay, showAPIKeyError} from "../utils/shared";
+import {CHATGPT_COMMENT_BTN_ID, CHATGPT_POST_BTN_ID, Domains, ERROR_MESSAGE} from "../utils/constants";
+import {getComment, delay, showAPIKeyError, getPost} from "../utils/shared";
 import getConfig from "../utils/config";
 import {notyf} from "../chrome/content_script";
 
@@ -16,7 +16,7 @@ const commentsSectionInjector = () => {
 
             const chatGPTBtn = document.createElement("button");
             chatGPTBtn.setAttribute("type", "button");
-            chatGPTBtn.setAttribute("id", CHATGPT_BTN_ID);
+            chatGPTBtn.setAttribute("id", CHATGPT_COMMENT_BTN_ID);
             chatGPTBtn.setAttribute(
                 "class",
                 "artdeco-button--tertiary artdeco-button artdeco-button--circle artdeco-button--muted"
@@ -36,7 +36,7 @@ const postSectionInjector = () => {
         const chatGPTBtnContainer = document.createElement('div')
         const chatGPTBtn = document.createElement("button");
         chatGPTBtn.setAttribute("type", "button");
-        chatGPTBtn.setAttribute("id", CHATGPT_BTN_ID);
+        chatGPTBtn.setAttribute("id", CHATGPT_POST_BTN_ID);
         chatGPTBtn.setAttribute(
             "class",
             "artdeco-button--tertiary artdeco-button artdeco-button--circle artdeco-button--muted"
@@ -50,33 +50,43 @@ const postSectionInjector = () => {
 const commentsHandler = () => {
     document.body.addEventListener("click", async (e) => {
         const target = e.target as Element;
-        const btn = target?.closest(`#${CHATGPT_BTN_ID}`);
+        const btn = target?.closest(`#${CHATGPT_COMMENT_BTN_ID}`);
         if (!btn) return;
 
         const config = await getConfig();
-        if (!config["social-comments-openapi-key"])
+        if (!config["social-synth-api-key"])
             return showAPIKeyError(Domains.LinkedIn);
 
         notyf?.dismissAll();
-
         const wrapper = target?.closest(".feed-shared-update-v2");
+        const isMyPost = wrapper?.querySelector('.ca-entry-point__num-views') !== null
+        console.log('is it my post? ', isMyPost)
         if (!wrapper) return;
+        // We need to know if the comment being generated is a reply to another comment or a comment on a post
+        const replyContainer = btn.closest('.comments-comment-item__nested-items')
+        const isReply = replyContainer !== null
 
-        const commentInputEl = wrapper.querySelector(".ql-editor")!;
-        commentInputEl.innerHTML = "";
+        const commentInputEl = isReply
+            ? replyContainer?.querySelector('.ql-editor')!
+            : wrapper.querySelector(".ql-editor")!
 
-        commentInputEl.setAttribute("data-placeholder", "Yobi is thinking...");
-        btn.setAttribute("disabled", "true");
-        btn.setAttribute("loading", "true");
+        commentInputEl.innerHTML = ""
+        commentInputEl.setAttribute("data-placeholder", "Yobi is thinking...")
+        btn.setAttribute("disabled", "true")
+        btn.setAttribute("loading", "true")
 
-        const content =
+        const postContent =
             (
                 wrapper.querySelector(
                     '.feed-shared-inline-show-more-text span[dir="ltr"]'
                 ) as HTMLElement
             )?.innerText || "";
-
-        const comment = await getComment(config, Domains.LinkedIn, content);
+        const commentToReply = (
+            replyContainer?.closest(
+                '.comments-comment-item')?.querySelector('.comments-comment-item-content-body'
+            ) as HTMLElement
+        )?.innerText
+        const comment = await getComment(config, Domains.LinkedIn, postContent, commentToReply, isMyPost);
         if (comment.length) {
             commentInputEl.innerHTML = comment;
         } else {
@@ -93,11 +103,11 @@ const commentsHandler = () => {
 const postHandler = () => {
     document.body.addEventListener("click", async (e) => {
         const target = e.target as Element;
-        const btn = target?.closest(`#${CHATGPT_BTN_ID}`);
+        const btn = target?.closest(`#${CHATGPT_POST_BTN_ID}`);
         if (!btn) return;
 
         const config = await getConfig();
-        if (!config["social-comments-openapi-key"])
+        if (!config["social-synth-api-key"])
             return showAPIKeyError(Domains.LinkedIn);
 
         notyf?.dismissAll();
@@ -107,17 +117,16 @@ const postHandler = () => {
             (
                 postInputEl?.querySelector('p') as HTMLElement
             )?.innerText || "nothing";
-        console.log(content)
         postInputEl.innerHTML = "";
 
         postInputEl.setAttribute("data-placeholder", "Yobi is thinking...");
         btn.setAttribute("disabled", "true");
         btn.setAttribute("loading", "true");
 
-        // TODO: change to GET POST
-        const comment = await getComment(config, Domains.LinkedIn, content);
-        if (comment.length) {
-            postInputEl.innerHTML = comment;
+        // TODO: change to getPost()
+        const post = await getPost(config, Domains.LinkedIn, content);
+        if (post.length) {
+            postInputEl.innerHTML = post;
         } else {
             postInputEl.setAttribute("data-placeholder", ERROR_MESSAGE);
             await delay(3000);
@@ -137,6 +146,6 @@ export const injector = () => {
 
 
 export const handler = async () => {
-    commentsHandler()
     postHandler()
+    commentsHandler()
 };
