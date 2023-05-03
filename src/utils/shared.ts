@@ -11,7 +11,7 @@ export const getPost = async (
     content: string
 ): Promise<string> => {
 
-    const tunings = await chrome.storage.local.get('tunings')
+    const tunings = (await chrome.storage.local.get('tunings'))['tunings'] ?? '[]'
     const selectedWritingStyle = await chrome.storage.local.get('selected_writing_style')
 
     const body = {
@@ -19,7 +19,7 @@ export const getPost = async (
         "topic": content,
         "target_audience": "everyone",
         "writing_guide_id": selectedWritingStyle['selected_writing_style'],
-        "tunings": JSON.parse(tunings['tunings']).join(','),
+        "tunings": JSON.parse(tunings).join(','),
         "creativity": 0.5
     };
 
@@ -68,8 +68,8 @@ export const getComment = async (
 
     const selectedWritingStyle = await chrome.storage.local.get('selected_writing_style')
 
-    let tunings = await chrome.storage['local'].get('tunings')
-    tunings = JSON.parse(tunings['tunings']).join('\n-')
+    let tunings = (await chrome.storage.local.get('tunings'))['tunings'] ?? '[]'
+    tunings = JSON.parse(tunings).join('\n-')
     const body = {
         channel: domain.split('.')[0],
         post_content: content,
