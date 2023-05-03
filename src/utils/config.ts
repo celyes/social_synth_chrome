@@ -1,7 +1,7 @@
 import {
     COMMENTS_STYLE_OPT_DEFAULT,
     HASHTAG_OPT_DEFAULT,
-    MODEL_OPT_DEFAULT,
+    MODEL_OPT_DEFAULT, TUNINGS_DEFAULT,
     WRITING_STYLES_DEFAULT,
 } from "./options";
 import {
@@ -22,12 +22,22 @@ const OPTIONS = [
     // "opt-facebook-prompts",
     "opt-twitter-prompts",
     "writing_styles",
-    "selected_writing_style"
+    "selected_writing_style",
+    "tunings"
 ] as const;
 
 export type StorageKeys = (typeof OPTIONS)[number];
 
 export type Config = Record<StorageKeys, any>;
+
+export type WritingStyle = {
+    id: number,
+    name: string,
+    description: string,
+    created_at: string,
+    updated_at: string,
+};
+
 
 export const DEFAULT_CONFIG: Config = {
     "social-synth-api-key": "",
@@ -40,7 +50,8 @@ export const DEFAULT_CONFIG: Config = {
     "opt-model-type": MODEL_OPT_DEFAULT,
     "opt-hashtag-option": HASHTAG_OPT_DEFAULT,
     "writing_styles": WRITING_STYLES_DEFAULT,
-    "selected_writing_style": 0
+    "selected_writing_style": 0,
+    "tunings": TUNINGS_DEFAULT
 };
 
 export default (): Promise<Config> =>

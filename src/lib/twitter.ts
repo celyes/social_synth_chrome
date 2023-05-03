@@ -58,7 +58,7 @@ const quoteTweetHandler = async () => {
     const content =
       closestSibling(btn, `[data-testid="tweetText"]`)?.textContent || "";
 
-    const comment = await getComment(config, Domains.Twitter, content);
+    const comment = await getComment(config, Domains.Twitter, content, null);
     if (comment.length) {
       setTweetText(commentInputWrapper, comment);
     } else {

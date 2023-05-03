@@ -6,6 +6,7 @@ import useChromeStorage from "../../hooks/useChromeStorage";
 import {HASHTAG_OPTS, HASHTAG_OPT_DEFAULT, WRITING_STYLES_DEFAULT} from "../../utils/options";
 import {WritingStylesStructure} from "../../components/Selection/Selection";
 import Section from "../../components/Section";
+import {useEffect} from "react";
 
 const WritingStyleOptions = () => {
     const [writingStyles, setWritingStyle, {loading}] = useChromeStorage<string | object>(

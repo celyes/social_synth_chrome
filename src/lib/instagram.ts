@@ -99,7 +99,7 @@ export const handler = async () => {
         body = await getReelContent();
       }
 
-      const comment = await getComment(config, Domains.Instagram, body);
+      const comment = await getComment(config, Domains.Instagram, body, null);
       if (comment.length) {
         imitateKeyInput(commentInputEl, comment);
       } else {

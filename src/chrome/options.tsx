@@ -11,6 +11,8 @@ import ICWritingStyles from "../components/ICWritingStyles";
 import Logo from "../components/Logo";
 import Section, {Props as SectionProps} from "../components/Section";
 import Tab, {TabItem} from "../components/Tab";
+import WritingStyleOptions from "./containers/WritingStyleOptions";
+import Tunings from "../components/Tunings/Tunings";
 import CommentStyleOptions from "./containers/CommentStyleOptions";
 import HashtagOptions from "./containers/HashtagOptions";
 import ExcludedWords from "./containers/ExcludedWords";
@@ -18,23 +20,23 @@ import Prompts from "./containers/Prompts";
 import {Domains} from "../utils/constants";
 
 import "./common.css";
-import WritingStyleOptions from "./containers/WritingStyleOptions";
+
 const SECTIONS: (SectionProps & { comp: JSX.Element })[] = [
     {
-        title: "Comment style",
-        desc: "Whether generated comments will be professional, informal, etc.",
-        comp: <CommentStyleOptions/>,
+        title: "Tunings",
+        desc: "Give exact instructions to your synth",
+        comp: <Tunings/>,
     },
-    {
-        title: "Allow hashtags",
-        desc: "Would you like to allow hashtags in generated comments?",
-        comp: <HashtagOptions/>,
-    },
-    {
-        title: "Words to avoid",
-        desc: "Words that will not be mentioned often in generated comments. It's not 100% guaranteed these words won't be mentioned.",
-        comp: <ExcludedWords/>,
-    },
+    // {
+    //     title: "Allow hashtags",
+    //     desc: "Would you like to allow hashtags in generated comments?",
+    //     comp: <HashtagOptions/>,
+    // },
+    // {
+    //     title: "Words to avoid",
+    //     desc: "Words that will not be mentioned often in generated comments. It's not 100% guaranteed these words won't be mentioned.",
+    //     comp: <ExcludedWords/>,
+    // },
 ];
 
 const TABS: TabItem[] = [
@@ -56,7 +58,7 @@ const TABS: TabItem[] = [
     },
     {
         title: "Posts",
-        comp: <WritingStyleOptions />,
+        comp: <WritingStyleOptions/>,
         icon: <ICWritingStyles/>,
     }
     // {

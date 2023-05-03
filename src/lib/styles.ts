@@ -66,7 +66,8 @@ export default () => {
       align-items: center;
     }
 
-    #${CHATGPT_POST_BTN_ID}.twitter{
+    #${CHATGPT_POST_BTN_ID}.twitter,
+    #${CHATGPT_COMMENT_BTN_ID}.twitter{
       width: 34px;
       height: 34px;
       display: flex;
@@ -75,12 +76,14 @@ export default () => {
       margin-right: 5px;
     }
 
-    #${CHATGPT_POST_BTN_ID}.twitter svg {
+    #${CHATGPT_POST_BTN_ID}.twitter svg, 
+    #${CHATGPT_COMMENT_BTN_ID}.twitter svg {
       width: 18px;
       height: 18px;
     }
 
-    #${CHATGPT_POST_BTN_ID}{
+    #${CHATGPT_POST_BTN_ID},
+    #${CHATGPT_COMMENT_BTN_ID} {
       cursor: pointer;
     }
 

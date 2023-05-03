@@ -52,37 +52,41 @@ const commentsHandler = () => {
         const target = e.target as Element;
         const btn = target?.closest(`#${CHATGPT_COMMENT_BTN_ID}`);
         if (!btn) return;
-        const commentContainer = btn.closest('.comments-comment-item__nested-items')
-        const isReply = commentContainer !== null
 
         const config = await getConfig();
         if (!config["social-synth-api-key"])
             return showAPIKeyError(Domains.LinkedIn);
 
         notyf?.dismissAll();
-
         const wrapper = target?.closest(".feed-shared-update-v2");
+        const isMyPost = wrapper?.querySelector('.ca-entry-point__num-views') !== null
+        console.log('is it my post? ', isMyPost)
         if (!wrapper) return;
-        let commentInputEl = null
-        if (isReply) {
-            commentInputEl = commentContainer?.querySelector('.ql-editor')!
-        } else {
-            commentInputEl = wrapper.querySelector(".ql-editor")!
-        }
-        commentInputEl.innerHTML = "";
+        // We need to know if the comment being generated is a reply to another comment or a comment on a post
+        const replyContainer = btn.closest('.comments-comment-item__nested-items')
+        const isReply = replyContainer !== null
 
-        commentInputEl?.setAttribute("data-placeholder", "Yobi is thinking...");
-        btn.setAttribute("disabled", "true");
-        btn.setAttribute("loading", "true");
+        const commentInputEl = isReply
+            ? replyContainer?.querySelector('.ql-editor')!
+            : wrapper.querySelector(".ql-editor")!
 
-        const content =
+        commentInputEl.innerHTML = ""
+        commentInputEl.setAttribute("data-placeholder", "Yobi is thinking...")
+        btn.setAttribute("disabled", "true")
+        btn.setAttribute("loading", "true")
+
+        const postContent =
             (
                 wrapper.querySelector(
                     '.feed-shared-inline-show-more-text span[dir="ltr"]'
                 ) as HTMLElement
             )?.innerText || "";
-
-        const comment = await getComment(config, Domains.LinkedIn, content);
+        const commentToReply = (
+            replyContainer?.closest(
+                '.comments-comment-item')?.querySelector('.comments-comment-item-content-body'
+            ) as HTMLElement
+        )?.innerText
+        const comment = await getComment(config, Domains.LinkedIn, postContent, commentToReply, isMyPost);
         if (comment.length) {
             commentInputEl.innerHTML = comment;
         } else {

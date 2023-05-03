@@ -55,7 +55,7 @@ export enum HashtagOptions {
     RANDOMLY = "randomly",
     NO = "no",
 }
-
+export const TUNINGS_DEFAULT = '[]'
 export const HASHTAG_OPT_DEFAULT = HashtagOptions.RANDOMLY;
 export const WRITING_STYLES_DEFAULT = {}
 export const HASHTAG_OPTS: CheckboxOption[] = [

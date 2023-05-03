@@ -28,7 +28,6 @@ export default <T,>(key: StorageKeys, defaultValue: T) => {
       })
       .finally(async () => {
         isInitialized.current = true;
-        await fetchWritingStyles()
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
