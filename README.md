@@ -1,14 +1,9 @@
-# social-comments-gpt
+# Social Yobi
 
-A chrome extension that creates engaging comments on social media, powered by OpenAI's ChatGPT. 
+A Chrome extension that creates engaging comments on social media, powered by Yobi's Social Synth. 
 
-Currently supports LinkedIn and Instagram.
+Currently supports LinkedIn, Instagram and Twitter.
 
-
-https://user-images.githubusercontent.com/25549784/214015786-c433c3bd-e537-42b5-ae99-b1ef6fd52960.mov
-
-
-## Setup
 
 ### Development
 
@@ -28,17 +23,14 @@ yarn watch
 1. Go to `chrome://extensions/` and click Load Unpacked
 2. Load `dist` folder
 
-### Set API key for the OpenAI API
+### Set API key for the Social Synth API
 
-1. Log into your OpenAI account on the [OpenAI website](https://beta.openai.com/).
-2. Click on the "View API Keys" button in the top-right corner of the page.
-3. Click on the "Create an API Key" button to generate a new API key.
-
-Once the API key is generated, you can copy it and set it on the social-comments-gpt options.
-
-<img width="1552" alt="Screenshot 2023-01-23 at 11 17 19 AM" src="https://user-images.githubusercontent.com/25549784/214015984-75ca37e5-27cf-47ee-980e-0f4f79050566.png">
+1. Log into your OpenAI account on the [Yobi Social Synth website](https://social.yobi.app/).
+2. Click on your username in the top-right corner of the page.
+3. Click on the "Profile".
+4. Copy the API Key that is in the last form in the page.
+Once the API key is generated, you can copy it and set it on the Social Synth options page.
 
 ### More Options
 
-<img width="1552" alt="Screenshot 2023-01-26 at 9 26 42 PM" src="https://user-images.githubusercontent.com/25549784/214943214-4f5ad189-e11e-448f-b6ad-0c8557dbeb22.png">
-
+Open the options page and click on "options" icon to reveal the tunings and the selected writing style.

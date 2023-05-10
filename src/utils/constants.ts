@@ -4,7 +4,7 @@ export const CHATGPT_POST_BTN_ID = "chatgpt-post-btn";
 export const TOAST_CLASSNAME = "social-comments-toast";
 
 export const ERROR_MESSAGE =
-  "ChatGPT failed. Follow the instructions & try again.";
+  "Social Yobi failed. Follow the instructions & try again.";
 
 export enum Domains {
   LinkedIn = "linkedin.com",
