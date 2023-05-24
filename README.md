@@ -2,7 +2,7 @@
 
 A Chrome extension that creates engaging comments on social media, powered by Yobi's Social Synth. 
 
-Currently supports LinkedIn, Instagram and Twitter.
+Currently, supports LinkedIn, Instagram and Twitter.
 
 
 ### Development
