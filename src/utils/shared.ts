@@ -19,7 +19,7 @@ export const getPost = async (
         "topic": content,
         "target_audience": "everyone",
         "writing_guide_id": selectedWritingStyle['selected_writing_style'],
-        "tunings": JSON.parse(tunings).join(','),
+        "tunings": JSON.parse(tunings),
         "creativity": 0.5
     };
 
@@ -69,7 +69,7 @@ export const getComment = async (
     const selectedWritingStyle = await chrome.storage.local.get('selected_writing_style')
 
     let tunings = (await chrome.storage.local.get('tunings'))['tunings'] ?? '[]'
-    tunings = JSON.parse(tunings).join('\n-')
+    tunings = JSON.parse(tunings)
     const body = {
         channel: domain.split('.')[0],
         post_content: content,
@@ -92,9 +92,8 @@ export const getComment = async (
     // TODO: change the endpoint here...
     const response = await fetch("https://social.yobi.app/api/generate/comment", options);
     const socialSynthResponse = await response.json();
-
     if (!response.ok) {
-        const {title, message} = generateErrorMessage(response.status);
+        // const {title, message} = generateErrorMessage(response.status);
         notyf?.error({
             duration: 0,
             dismissible: true,
@@ -114,6 +113,7 @@ export const getComment = async (
     }
 
     return comment;
+
 };
 
 export const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
