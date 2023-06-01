@@ -3,7 +3,7 @@
 
   "name": "Social Synth",
   "description": "Create engaging comments and posts on social media, powered by Yobi Social Synth",
-  "version": "0.0.1",
+  "version": "0.0.3",
 
   "icons": {
     "16": "icon16.png",
