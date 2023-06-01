@@ -32,6 +32,7 @@
       "matches": ["*://*/*"],
       "include_globs": [
         "*://*.linkedin.com/*",
+        "*://*.dentaltown.com/*",
         "*://linkedin.com/*",
         "*://*.facebook.com/*",
         "*://facebook.com/*",

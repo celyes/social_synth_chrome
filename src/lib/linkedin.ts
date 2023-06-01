@@ -60,7 +60,7 @@ const commentsHandler = () => {
         notyf?.dismissAll();
         const wrapper = target?.closest(".feed-shared-update-v2");
         const isMyPost = wrapper?.querySelector('.ca-entry-point__num-views') !== null
-        console.log('is it my post? ', isMyPost)
+
         if (!wrapper) return;
         // We need to know if the comment being generated is a reply to another comment or a comment on a post
         const replyContainer = btn.closest('.comments-comment-item__nested-items')
@@ -123,7 +123,6 @@ const postHandler = () => {
         btn.setAttribute("disabled", "true");
         btn.setAttribute("loading", "true");
 
-        // TODO: change to getPost()
         const post = await getPost(config, Domains.LinkedIn, content);
         if (post.length) {
             postInputEl.innerHTML = post;

@@ -8,7 +8,7 @@ import {
     INSTAGRAM_PROMPTS,
     LINKED_IN_PROMPTS,
     FACEBOOK_PROMPTS,
-    TWITTER_PROMPTS,
+    TWITTER_PROMPTS, DENTAL_TOWN_PROMPTS,
 } from "./prompts";
 
 const OPTIONS = [
@@ -19,6 +19,7 @@ const OPTIONS = [
     "opt-excluded-words",
     "opt-insta-prompts",
     "opt-linkedin-prompts",
+    "opt-dental-town-prompts",
     // "opt-facebook-prompts",
     "opt-twitter-prompts",
     "writing_styles",
@@ -45,6 +46,7 @@ export const DEFAULT_CONFIG: Config = {
     "opt-excluded-words": [],
     "opt-insta-prompts": INSTAGRAM_PROMPTS,
     "opt-linkedin-prompts": LINKED_IN_PROMPTS,
+    "opt-dental-town-prompts": DENTAL_TOWN_PROMPTS,
     // "opt-facebook-prompts": FACEBOOK_PROMPTS,
     "opt-twitter-prompts": TWITTER_PROMPTS,
     "opt-model-type": MODEL_OPT_DEFAULT,

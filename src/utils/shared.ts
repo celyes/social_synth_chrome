@@ -20,7 +20,13 @@ export const getPost = async (
         "target_audience": "everyone",
         "writing_guide_id": selectedWritingStyle['selected_writing_style'],
         "tunings": JSON.parse(tunings),
-        "creativity": 0.5
+        "creativity": 0.5,
+        "structure": {
+            "headline": true,
+            "body": true,
+            "call_to_action": true,
+            "hashtags": true
+        }
     };
 
     const options = {
@@ -68,13 +74,12 @@ export const getComment = async (
 
     const selectedWritingStyle = await chrome.storage.local.get('selected_writing_style')
 
-    let tunings = (await chrome.storage.local.get('tunings'))['tunings'] ?? '[]'
-    tunings = JSON.parse(tunings)
+    let tunings = JSON.parse((await chrome.storage.local.get('tunings'))['tunings'] ?? '[]')
     const body = {
         channel: domain.split('.')[0],
         post_content: content,
         writing_guide_id: selectedWritingStyle['selected_writing_style'],
-        creativity: 0.5,
+        creativity: 0.7,
         tunings: tunings,
         comment_to_reply: commentToReply,
         is_my_post: isItMyPost

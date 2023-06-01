@@ -7,25 +7,8 @@ export const TuningInput = styled.input`
   border-radius: 10px;
 `
 
-export const TuningsContainer = styled.ul`
-  list-style-type: none;
-  padding-inline-start: 0;
-`
-export const Body = styled.div`
-  display: flex;
-  margin: 16px 0;
-  width: 100%;
-`
-export const TuningPhrase = styled.h3`
+const Button = styled.button`
   display: inline;
-  font-size: 18px;
-`
-
-export const ListItem = styled.li``
-
-
-export const PrimaryButton = styled.button`
-  background-color: #1f2937;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -34,3 +17,37 @@ export const PrimaryButton = styled.button`
   font-weight: bold;
   cursor: pointer;
 `
+export const TuningsContainer = styled.ul`
+  list-style-type: none;
+  padding-inline-start: 0;
+  cursor: pointer;
+`
+
+export const PrimaryButton = styled(Button)`
+  background-color: #1f2937;
+`
+export const DangerButton = styled(Button)`
+  visibility: visible;
+  background-color: #ff3232;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+`
+
+export const TuningPhrase = styled.h3`
+  display: inline;
+  font-size: 18px;
+  margin: 0 20px;
+`
+
+
+export const Body = styled.div`
+  display: flex;
+  margin: 10px 0;
+  width: 100%;
+`
+
+
+export const ListItem = styled.li``
+
+

@@ -25,7 +25,7 @@ yarn watch
 
 ### Set API key for the Social Synth API
 
-1. Log into your OpenAI account on the [Yobi Social Synth website](https://social.yobi.app/).
+1. Log into your OpenAI account on the [Yobi Social Synth website](https://social.yobi.app).
 2. Click on your username in the top-right corner of the page.
 3. Click on the "Profile".
 4. Copy the API Key that is in the last form in the page.
