@@ -8,7 +8,7 @@ import {WritingStylesStructure} from "../../components/Selection/Selection";
 import Section from "../../components/Section";
 import {useEffect} from "react";
 
-const WritingStyleOptions = () => {
+const  WritingStyleOptions = () => {
     const [writingStyles, setWritingStyle, {loading}] = useChromeStorage<string | object>(
         "writing_styles",
         WRITING_STYLES_DEFAULT

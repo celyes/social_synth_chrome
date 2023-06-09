@@ -8,6 +8,7 @@ export const ERROR_MESSAGE =
 
 export enum Domains {
   LinkedIn = "linkedin.com",
+  DentalTown = "dentaltown.com",
   // Facebook = "facebook.com",
   Instagram = "instagram.com",
   Twitter = "twitter.com",
@@ -15,6 +16,7 @@ export enum Domains {
 
 export const ALLOWED_DOMAINS: Domains[] = [
   Domains.LinkedIn,
+  Domains.DentalTown,
   // Domains.Facebook,
   Domains.Instagram,
   Domains.Twitter,

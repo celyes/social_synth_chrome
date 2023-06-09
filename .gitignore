@@ -4,3 +4,5 @@ dist/
 
 .DS_Store
 mix-manifest.json
+
+*.zip
