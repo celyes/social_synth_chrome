@@ -38,7 +38,7 @@ export const getPost = async (
         },
         body: JSON.stringify(body),
     };
-    const response = await fetch("https://social.yobi.app/api/generate/post", options);
+    const response = await fetch("https://api.social.yobi.app/api/generate/post", options);
     const socialSynthResponse = await response.json();
     console.log(socialSynthResponse)
     if (!response.ok) {
@@ -95,7 +95,7 @@ export const getComment = async (
         body: JSON.stringify(body),
     };
     // TODO: change the endpoint here...
-    const response = await fetch("https://social.yobi.app/api/generate/comment", options);
+    const response = await fetch("https://api.social.yobi.app/api/generate/comment", options);
     const socialSynthResponse = await response.json();
     if (!response.ok) {
         // const {title, message} = generateErrorMessage(response.status);
@@ -188,7 +188,7 @@ export const fetchWritingStyles = async () => {
         (await chrome.storage.local.get('selected_writing_style'))['selected_writing_style']
     ) || -1
     try {
-        const response = await fetch("https://social.yobi.app/api/writing-styles", options);
+        const response = await fetch("https://api.social.yobi.app/api/writing-styles", options);
         const socialSynthResponse = await response.json();
         const writing_styles = JSON.stringify(socialSynthResponse.results.data)
         await chrome.storage.local.set({'writing_styles': writing_styles})
