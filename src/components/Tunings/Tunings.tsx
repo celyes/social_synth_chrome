@@ -45,9 +45,9 @@ const Tunings = () => {
             <Styled.TuningsContainer>
                 {JSON.parse(tunings).map((tuning: string, key: number) => {
                     return (
-                        <>
+                        <div key={key}>
                                 <Styled.Body>
-                                    <Styled.ListItem key={key}>
+                                    <Styled.ListItem>
                                         <Styled.DangerButton onClick={() => {
                                             deleteTuning(key)
                                         }}>
@@ -63,7 +63,7 @@ const Tunings = () => {
                                         </Styled.TuningPhrase>
                                     </Styled.ListItem>
                                 </Styled.Body>
-                        </>
+                        </div>
                     )
                 })}
             </Styled.TuningsContainer>
