@@ -56,11 +56,11 @@ const TABS: TabItem[] = [
         ),
         icon: <IcSettings/>,
     },
-    {
-        title: "Posts",
-        comp: <WritingStyleOptions/>,
-        icon: <ICWritingStyles/>,
-    }
+    // {
+    //     title: "Posts",
+    //     comp: <WritingStyleOptions/>,
+    //     icon: <ICWritingStyles/>,
+    // }
     // {
     //   title: "Instagram Prompts",
     //   comp: <Prompts type={Domains.Instagram} />,
