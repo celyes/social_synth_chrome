@@ -66,9 +66,10 @@ const commentsHandler = () => {
         const replyContainer = btn.closest('.comments-comment-item__nested-items')
         const isReply = replyContainer !== null
 
-        const commentInputEl = isReply
+        const commentInputEl = (isReply
             ? replyContainer?.querySelector('.ql-editor')!
             : wrapper.querySelector(".ql-editor")!
+        ) as HTMLElement
 
         commentInputEl.innerHTML = ""
         commentInputEl.setAttribute("data-placeholder", "Yobi is thinking...")
@@ -88,7 +89,7 @@ const commentsHandler = () => {
         )?.innerText
         const comment = await getComment(config, Domains.LinkedIn, postContent, commentToReply, isMyPost);
         if (comment.length) {
-            commentInputEl.innerHTML = comment;
+            commentInputEl.innerText = comment;
         } else {
             commentInputEl.setAttribute("data-placeholder", ERROR_MESSAGE);
             await delay(3000);
