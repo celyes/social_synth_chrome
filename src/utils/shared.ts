@@ -40,7 +40,6 @@ export const getPost = async (
     };
     const response = await fetch("https://api.social.yobi.app/api/generate/post", options);
     const socialSynthResponse = await response.json();
-    console.log(socialSynthResponse)
     if (!response.ok) {
         const {title, message} = generateErrorMessage(response.status);
         notyf?.error({
@@ -53,7 +52,8 @@ export const getPost = async (
         return "";
     }
 
-    let post = (socialSynthResponse?.["results"]?.['posts'][0]['post_content'] || "")
+    // @ts-ignore
+    let post = (socialSynthResponse?.["posts"][0]['post_content'] || "")
         .replace(/^\s+|\s+$/g, "")
         .replace(/(^"|"$)/g, "");
 

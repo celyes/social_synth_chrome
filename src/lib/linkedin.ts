@@ -126,6 +126,7 @@ const postHandler = () => {
 
         const post = await getPost(config, Domains.LinkedIn, content);
         if (post.length) {
+            // @ts-ignore
             postInputEl.innerHTML = post;
         } else {
             postInputEl.setAttribute("data-placeholder", ERROR_MESSAGE);
